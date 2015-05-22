@@ -1,23 +1,34 @@
-const double CONVERSION_RATIO = 204.6d;
-const double V_SOURCE = 5.0d;
-const double R1 = 1000.0d;
-double V1 = 0;
+//CONSTANT DECLARATIONS
+const double R1 = 1000.0d;    //Constant 1 kOhm resistor
+
+//VARIABLE DECLARATIONS
+double Vs = 0.0d;            //
+double V1 = 0.0d;
 double R2 = 0.0d;
 
+//Set up I/O analog pins
 void setup() {
-  // put your setup code here, to run once:
   pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
   Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly
-  V1 = analogRead(A0)/CONVERSION_RATIO;
-  R2 = V1*R1;
-  R2 = R2/(V_SOURCE - V1);
+  Vs = analogRead(A1);
+  Vs = _map(Vs, 0.0d, 1023.0d, 0.0d, 5.0d);
+  
+  V1 = analogRead(A0);
+  V1 = _map(V1, 0.0d, 1023.0d, 0.0d, 5.0d);
+  R2 = V1*R1/(Vs - V1);
+  
   Serial.print("V1: ");
   Serial.println(V1);
   Serial.print("R2: ");
   Serial.println(R2);
   delay(1000);
+}
+
+double _map(double x, double in_min, double in_max, double out_min, double out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
