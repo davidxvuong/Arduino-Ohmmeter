@@ -43,3 +43,12 @@ I used an additional analog pin A1 to detect what the input voltage source.
 ###Code
 You can view the source code for the Arduino in this repository. The main jist of the code is to detect the input voltage and output voltage, and using the formula above from the voltage division section, we solve for R2.
 
+###Output from Arduino
+
+With a 220 Ohm resistor connected as R2:
+
+![Alt text](https://dl.dropboxusercontent.com/u/9118489/Github%20Pictures/Arduino%20Ohmmeter/arduino_ohmmeter_220%20ohm%20resistor.png)
+
+Without a R2 resistor:
+
+![Alt text](https://dl.dropboxusercontent.com/u/9118489/Github%20Pictures/Arduino%20Ohmmeter/arduino_ohmmeter_no%20resistor.png)
